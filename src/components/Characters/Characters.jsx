@@ -1,13 +1,19 @@
-import React, { useEffect, useState, useReducer, useMemo, useRef } from 'react';
+import React, {
+  useEffect,
+  useState,
+  useReducer,
+  useMemo,
+  useRef,
+  useCallback,
+} from 'react';
 
 import { Row, Col } from 'antd';
 import { Button, Tooltip } from 'antd';
 import { Card } from 'antd';
-import { SmileTwoTone, HeartTwoTone, HeartOutlined } from '@ant-design/icons';
-import { Input, Space } from 'antd';
+import { HeartTwoTone, HeartOutlined } from '@ant-design/icons';
+import { SearchBar } from '../SearchBar/SearchBar';
 
 const { Meta } = Card;
-const { Search } = Input;
 
 const initialState = {
   favorites: [],
@@ -61,15 +67,19 @@ export const Characters = () => {
     return favorites.favorites.some((fav) => fav.id === character.id);
   };
 
-  const onSearch = () => {
-    // const text = event.target.value;
-    // if (text || text === '') {
-    //   setSearch(text.toLowerCase());
-    //   return;
-    // }
-    // setSearch(event.toLowerCase());
+  // const onSearch = () => {
+  //   // const text = event.target.value;
+  //   // if (text || text === '') {
+  //   //   setSearch(text.toLowerCase());
+  //   //   return;
+  //   // }
+  //   // setSearch(event.toLowerCase());
+  //   setSearch(searchInput.current.input.value.toLowerCase());
+  // };
+
+  const onSearch = useCallback(() => {
     setSearch(searchInput.current.input.value.toLowerCase());
-  };
+  }, []);
 
   const filteredUsers = useMemo(
     () =>
@@ -81,13 +91,10 @@ export const Characters = () => {
 
   return (
     <>
-      <Search />
-      <Search />
-      <Search
-        ref={searchInput}
-        placeholder='input search text'
+      <SearchBar
+        search={search}
+        searchInput={searchInput}
         onSearch={onSearch}
-        onChange={onSearch}
       />
 
       <Row gutter={[16, 16]} justify='space-around'>
