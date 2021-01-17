@@ -6,7 +6,7 @@ import { ThemeContext } from '../../context/ThemeContext';
 
 const { Header } = Layout;
 
-export const TopBar = () => {
+export const TopBar = ({ title }) => {
   const [darkMode, setDarkMode] = useState(false);
   const color = useContext(ThemeContext);
 
@@ -26,7 +26,7 @@ export const TopBar = () => {
         backgroundColor: { color },
       }}
     >
-      <h1 style={{ color }}>React Hooks</h1>
+      <h1 style={{ color }}>{title}</h1>
       <Switch
         checkedChildren='Light Mode'
         unCheckedChildren='Dark Mode'

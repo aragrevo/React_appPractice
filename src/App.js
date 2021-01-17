@@ -1,6 +1,6 @@
 import './App.css';
 import 'antd/dist/antd.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
 import {
   UserOutlined,
@@ -33,7 +33,7 @@ function App() {
         />
         <Menu theme='dark' defaultSelectedKeys={['1']} mode='inline'>
           <Menu.Item key='1' icon={<PieChartOutlined />}>
-            Option 1
+            Hooks
           </Menu.Item>
           <Menu.Item key='2' icon={<DesktopOutlined />}>
             Option 2
@@ -53,7 +53,7 @@ function App() {
         </Menu>
       </Sider>
       <Layout className='site-layout-background'>
-        <TopBar />
+        <TopBar title='Platzi React Hooks' />
 
         <Content style={{ margin: '64px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
