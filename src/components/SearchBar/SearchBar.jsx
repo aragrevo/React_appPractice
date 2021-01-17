@@ -7,7 +7,6 @@ export const SearchBar = ({ search, searchInput, onSearch }) => {
   return (
     <Search
       style={{
-        marginTop: '74px',
         marginBottom: '10px',
         width: 500,
         marginRight: 0,

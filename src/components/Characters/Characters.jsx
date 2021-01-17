@@ -58,16 +58,6 @@ export const Characters = () => {
     return favorites.favorites.some((fav) => fav.id === character.id);
   };
 
-  // const onSearch = () => {
-  //   // const text = event.target.value;
-  //   // if (text || text === '') {
-  //   //   setSearch(text.toLowerCase());
-  //   //   return;
-  //   // }
-  //   // setSearch(event.toLowerCase());
-  //   setSearch(searchInput.current.input.value.toLowerCase());
-  // };
-
   const onSearch = useCallback(() => {
     setSearch(searchInput.current.input.value.toLowerCase());
   }, []);
@@ -94,7 +84,7 @@ export const Characters = () => {
             <Card
               hoverable
               cover={<img alt={character.name} src={character.image} />}
-              style={{ width: 300 }}
+              style={{ maxWidth: 300 }}
               bodyStyle={
                 isFavorite(character)
                   ? { backgroundColor: 'wheat' }
