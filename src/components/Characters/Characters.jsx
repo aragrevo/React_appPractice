@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer, useMemo } from 'react';
+import React, { useEffect, useState, useReducer, useMemo, useRef } from 'react';
 
 import { Row, Col } from 'antd';
 import { Button, Tooltip } from 'antd';
@@ -36,6 +36,7 @@ export const Characters = () => {
   const [characters, setCharacters] = useState([]);
   const [favorites, dispatch] = useReducer(favoriteReducer, initialState);
   const [search, setSearch] = useState('');
+  const searchInput = useRef(null);
 
   const getCharacters = async () => {
     const response = await fetch('https://rickandmortyapi.com/api/character/');
@@ -60,13 +61,14 @@ export const Characters = () => {
     return favorites.favorites.some((fav) => fav.id === character.id);
   };
 
-  const onSearch = (event) => {
-    const text = event.target.value;
-    if (text || text === '') {
-      setSearch(text.toLowerCase());
-      return;
-    }
-    setSearch(event.toLowerCase());
+  const onSearch = () => {
+    // const text = event.target.value;
+    // if (text || text === '') {
+    //   setSearch(text.toLowerCase());
+    //   return;
+    // }
+    // setSearch(event.toLowerCase());
+    setSearch(searchInput.current.input.value.toLowerCase());
   };
 
   const filteredUsers = useMemo(
@@ -82,6 +84,7 @@ export const Characters = () => {
       <Search />
       <Search />
       <Search
+        ref={searchInput}
         placeholder='input search text'
         onSearch={onSearch}
         onChange={onSearch}
