@@ -22,7 +22,17 @@ function App() {
   };
   return (
     <Layout>
-      <Sider collapsible collapsed={collapsed} onCollapse={handleCollapse}>
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={handleCollapse}
+        style={{
+          overflow: 'auto',
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+        }}
+      >
         <div
           className='logo'
           style={{
@@ -52,8 +62,11 @@ function App() {
           </Menu.Item>
         </Menu>
       </Sider>
-      <Layout className='site-layout-background'>
-        <TopBar title='Platzi React Hooks' />
+      <Layout
+        className='site-layout-background'
+        style={collapsed ? { marginLeft: '80px' } : { marginLeft: '200px' }}
+      >
+        <TopBar title='Platzi React Hooks' style={{ marginLeft: '80px' }} />
 
         <Content style={{ margin: '64px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>

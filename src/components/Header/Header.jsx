@@ -3,6 +3,7 @@ import React, { useState, useContext } from 'react';
 import { Layout } from 'antd';
 import { Switch } from 'antd';
 import { ThemeContext } from '../../context/ThemeContext';
+import { SearchBox } from '../SearchBox/SearchBox';
 
 const { Header } = Layout;
 
@@ -27,6 +28,7 @@ export const TopBar = ({ title }) => {
       }}
     >
       <h1 style={{ color }}>{title}</h1>
+      <SearchBox />
       <Switch
         checkedChildren='Light Mode'
         unCheckedChildren='Dark Mode'
