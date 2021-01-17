@@ -1,5 +1,4 @@
 import React, {
-  useEffect,
   useState,
   useReducer,
   useMemo,
@@ -12,12 +11,15 @@ import { Button, Tooltip } from 'antd';
 import { Card } from 'antd';
 import { HeartTwoTone, HeartOutlined } from '@ant-design/icons';
 import { SearchBar } from '../SearchBar/SearchBar';
+import { useCharacters } from '../../hooks/useCharacters';
 
 const { Meta } = Card;
 
 const initialState = {
   favorites: [],
 };
+
+const API = 'https://rickandmortyapi.com/api/character/';
 
 const favoriteReducer = (state, action) => {
   switch (action.type) {
@@ -39,21 +41,10 @@ const favoriteReducer = (state, action) => {
 };
 
 export const Characters = () => {
-  const [characters, setCharacters] = useState([]);
   const [favorites, dispatch] = useReducer(favoriteReducer, initialState);
   const [search, setSearch] = useState('');
   const searchInput = useRef(null);
-
-  const getCharacters = async () => {
-    const response = await fetch('https://rickandmortyapi.com/api/character/');
-    const { results } = await response.json();
-    console.log(results);
-    setCharacters(results);
-  };
-
-  useEffect(() => {
-    getCharacters();
-  }, []);
+  const characters = useCharacters(API);
 
   const handleClick = (favorite) => {
     dispatch({ type: 'ADD_TO_FAVORITE', payload: favorite });
