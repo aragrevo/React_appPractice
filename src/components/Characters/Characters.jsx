@@ -6,9 +6,7 @@ import React, {
   useCallback,
 } from 'react';
 
-import { Row, Col } from 'antd';
-import { Button, Tooltip } from 'antd';
-import { Card } from 'antd';
+import { Button, Tooltip, Card, Row, Col } from 'antd';
 import { HeartTwoTone, HeartOutlined } from '@ant-design/icons';
 import { SearchBar } from '../SearchBar/SearchBar';
 import { useCharacters } from '../../hooks/useCharacters';
@@ -54,19 +52,15 @@ export const Characters = () => {
     dispatch({ type: 'REMOVE_TO_FAVORITE', payload: favorite });
   };
 
-  const isFavorite = (character) => {
-    return favorites.favorites.some((fav) => fav.id === character.id);
-  };
+  const isFavorite = (character) =>
+    favorites.favorites.some((fav) => fav.id === character.id);
 
   const onSearch = useCallback(() => {
     setSearch(searchInput.current.input.value.toLowerCase());
   }, []);
 
   const filteredUsers = useMemo(
-    () =>
-      characters.filter((user) => {
-        return user.name.toLowerCase().includes(search);
-      }),
+    () => characters.filter((user) => user.name.toLowerCase().includes(search)),
     [characters, search]
   );
 

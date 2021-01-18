@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 
-import { Layout } from 'antd';
-import { Switch } from 'antd';
+import { Layout, Switch } from 'antd';
 import { ThemeContext } from '../../context/ThemeContext';
 import { SearchBox } from '../custom/SearchBox/SearchBox';
 

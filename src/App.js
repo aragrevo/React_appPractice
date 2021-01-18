@@ -3,16 +3,17 @@ import 'antd/dist/antd.css';
 import { Link, Route, useLocation } from 'wouter';
 import { Layout, Menu, Breadcrumb, Carousel } from 'antd';
 import {
-  UserOutlined,
+  AppstoreAddOutlined,
   DesktopOutlined,
   PieChartOutlined,
-  FileOutlined,
-  TeamOutlined,
+  ShoppingCartOutlined,
 } from '@ant-design/icons';
 import { SearchBox } from 'components/custom/SearchBox/SearchBox';
 import { ThemeContext } from 'context/ThemeContext';
-import { TopBar } from './components/Header/Header';
-import { PageHooks } from './pages/PageHooks';
+import Home from 'containers/Home';
+import Checkout from 'containers/Checkout';
+import { TopBar } from 'components/Header/Header';
+import { PageHooks } from 'pages/PageHooks';
 import './App.css';
 
 const { SubMenu } = Menu;
@@ -67,20 +68,27 @@ function App() {
           <Menu.Item key="/hooks" icon={<PieChartOutlined />}>
             <Link to="/hooks">Hooks</Link>
           </Menu.Item>
-          <SubMenu key="/components" icon={<UserOutlined />} title="Components">
+          <SubMenu
+            key="/components"
+            icon={<AppstoreAddOutlined />}
+            title="Components"
+          >
             <Menu.Item key="/components/searchbox">
               <Link to="/components/searchbox">Search Box</Link>
             </Menu.Item>
-            {/* <Menu.Item key='4'>Bill</Menu.Item>
-            <Menu.Item key='5'>Alex</Menu.Item> */}
           </SubMenu>
-          <SubMenu key="sub2" icon={<TeamOutlined />} title="Team">
-            <Menu.Item key="6">Team 1</Menu.Item>
-            <Menu.Item key="8">Team 2</Menu.Item>
+          <SubMenu
+            key="/conf"
+            icon={<ShoppingCartOutlined />}
+            title="Platzi Conf"
+          >
+            <Menu.Item key="/conf/home">
+              <Link to="/conf/home">Home</Link>
+            </Menu.Item>
+            <Menu.Item key="/conf/checkout">
+              <Link to="/conf/checkout">Checkout</Link>
+            </Menu.Item>
           </SubMenu>
-          <Menu.Item key="9" icon={<FileOutlined />}>
-            Files
-          </Menu.Item>
         </Menu>
       </Sider>
       <Layout
@@ -105,6 +113,8 @@ function App() {
             </Route>
             <Route path="/hooks" component={PageHooks} />
             <Route path="/components/searchbox" component={SearchBox} />
+            <Route path="/conf/home" component={Home} />
+            <Route path="/conf/checkout" component={Checkout} />
           </div>
         </Content>
       </Layout>
