@@ -1,6 +1,6 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import 'antd/dist/antd.css';
-import { Link, Route, useLocation } from 'wouter';
+import { Link, Route, useLocation, Switch } from 'wouter';
 import { Layout, Menu, Breadcrumb, Carousel } from 'antd';
 import {
   AppstoreAddOutlined,
@@ -14,6 +14,7 @@ import Home from 'containers/Home';
 import Checkout from 'containers/Checkout';
 import { TopBar } from 'components/Header/Header';
 import { PageHooks } from 'pages/PageHooks';
+import { ConfLayout } from 'components/conf/ConfLayout';
 import './App.css';
 
 const { SubMenu } = Menu;
@@ -21,8 +22,27 @@ const { Content, Sider } = Layout;
 
 function App() {
   const [collapsed, setCollapsed] = useState(false);
+  const [show, setShow] = useState(true);
+  const [title, setTitle] = useState('');
   const [path] = useLocation();
   const color = useContext(ThemeContext);
+
+  const getTitle = () => {
+    switch (path) {
+      case '/hooks':
+        return 'Platzi React Hooks';
+      case '/components/searchbox':
+        return 'Search Box';
+
+      default:
+        return 'Bienvenido!!!';
+    }
+  };
+
+  useEffect(() => {
+    setTitle(getTitle());
+    setShow(!path.includes('conf'));
+  }, [path]);
 
   const handleCollapse = () => {
     setCollapsed(!collapsed);
@@ -95,26 +115,32 @@ function App() {
         className="site-layout-background"
         style={collapsed ? { marginLeft: '80px' } : { marginLeft: '200px' }}
       >
-        <TopBar title="Platzi React Hooks" />
+        {show && <TopBar title={title} />}
 
         <Content style={{ margin: '64px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Home</Breadcrumb.Item>
-            <Breadcrumb.Item>List</Breadcrumb.Item>
-            <Breadcrumb.Item>App</Breadcrumb.Item>
-          </Breadcrumb>
+          {show && (
+            <Breadcrumb style={{ margin: '16px 0' }}>
+              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>List</Breadcrumb.Item>
+              <Breadcrumb.Item>App</Breadcrumb.Item>
+            </Breadcrumb>
+          )}
           <div className="App">
-            <Route path="/">
-              <Carousel>
-                <div>
-                  <h3 style={contentStyle}>Home</h3>
-                </div>
-              </Carousel>
-            </Route>
-            <Route path="/hooks" component={PageHooks} />
-            <Route path="/components/searchbox" component={SearchBox} />
-            <Route path="/conf/home" component={Home} />
-            <Route path="/conf/checkout" component={Checkout} />
+            <Switch>
+              <Route path="/">
+                <Carousel>
+                  <div>
+                    <h3 style={contentStyle}>Home</h3>
+                  </div>
+                </Carousel>
+              </Route>
+              <Route path="/hooks" component={PageHooks} />
+              <Route path="/components/searchbox" component={SearchBox} />
+              <ConfLayout>
+                <Route path="/conf/home" component={Home} />
+                <Route path="/conf/checkout" component={Checkout} />
+              </ConfLayout>
+            </Switch>
           </div>
         </Content>
       </Layout>
