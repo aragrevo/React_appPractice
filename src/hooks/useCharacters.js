@@ -5,7 +5,7 @@ export const useCharacters = (url) => {
   const getCharacters = async () => {
     const response = await fetch(url);
     const { results } = await response.json();
-    console.log(results);
+    // console.log(results);
     setCharacters(results);
   };
   useEffect(() => {

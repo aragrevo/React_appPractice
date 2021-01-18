@@ -78,7 +78,7 @@ export const Characters = () => {
         onSearch={onSearch}
       />
 
-      <Row gutter={[16, 16]} justify='space-around'>
+      <Row gutter={[16, 16]} justify="space-around">
         {filteredUsers.map((character) => (
           <Col span={4} key={character.id}>
             <Card
@@ -97,20 +97,20 @@ export const Characters = () => {
                 style={isFavorite(character) ? { color: 'white' } : {}}
                 avatar={
                   isFavorite(character) ? (
-                    <Tooltip title='remove favorite'>
+                    <Tooltip title="remove favorite">
                       <Button
                         onClick={() => handleRemove(character)}
-                        type='primary'
-                        shape='circle'
+                        type="primary"
+                        shape="circle"
                         icon={<HeartTwoTone />}
                       />
                     </Tooltip>
                   ) : (
-                    <Tooltip title='add favorite'>
+                    <Tooltip title="add favorite">
                       <Button
                         onClick={() => handleClick(character)}
-                        type='primary'
-                        shape='circle'
+                        type="primary"
+                        shape="circle"
                         icon={<HeartOutlined />}
                       />
                     </Tooltip>

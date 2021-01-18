@@ -13,7 +13,7 @@ export const SearchBar = ({ search, searchInput, onSearch }) => {
       }}
       value={search}
       ref={searchInput}
-      placeholder='input search text'
+      placeholder="input search text"
       onSearch={onSearch}
       onChange={onSearch}
     />
