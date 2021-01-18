@@ -12,6 +12,9 @@ import { SearchBox } from 'components/custom/SearchBox/SearchBox';
 import { ThemeContext } from 'context/ThemeContext';
 import Home from 'containers/Home';
 import Checkout from 'containers/Checkout';
+import Information from 'containers/Information';
+import Payment from 'containers/Payment';
+import Success from 'containers/Success';
 import { TopBar } from 'components/Header/Header';
 import { PageHooks } from 'pages/PageHooks';
 import { ConfLayout } from 'components/conf/ConfLayout';
@@ -139,6 +142,12 @@ function App() {
               <ConfLayout>
                 <Route path="/conf/home" component={Home} />
                 <Route path="/conf/checkout" component={Checkout} />
+                <Route
+                  path="/conf/checkout/information"
+                  component={Information}
+                />
+                <Route path="/conf/checkout/payment" component={Payment} />
+                <Route path="/conf/checkout/success" component={Success} />
               </ConfLayout>
             </Switch>
           </div>
