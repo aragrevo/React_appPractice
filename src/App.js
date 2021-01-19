@@ -9,6 +9,7 @@ import {
   ShoppingCartOutlined,
 } from '@ant-design/icons';
 import { SearchBox } from 'components/custom/SearchBox/SearchBox';
+import { InputEmail } from 'components/custom/InputEmail/InputEmail';
 import { ThemeContext } from 'context/ThemeContext';
 import Home from 'containers/Home';
 import Checkout from 'containers/Checkout';
@@ -99,6 +100,9 @@ function App() {
             <Menu.Item key="/components/searchbox">
               <Link to="/components/searchbox">Search Box</Link>
             </Menu.Item>
+            <Menu.Item key="/components/inputemail">
+              <Link to="/components/inputemail">Email Input</Link>
+            </Menu.Item>
           </SubMenu>
           <SubMenu
             key="/conf"
@@ -139,6 +143,7 @@ function App() {
               </Route>
               <Route path="/hooks" component={PageHooks} />
               <Route path="/components/searchbox" component={SearchBox} />
+              <Route path="/components/inputemail" component={InputEmail} />
               <ConfLayout>
                 <Route path="/conf/home" component={Home} />
                 <Route path="/conf/checkout" component={Checkout} />
