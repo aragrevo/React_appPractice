@@ -8,8 +8,6 @@ import {
   PieChartOutlined,
   ShoppingCartOutlined,
 } from '@ant-design/icons';
-import { SearchBox } from 'components/custom/SearchBox/SearchBox';
-import { InputEmail } from 'components/custom/InputEmail/InputEmail';
 import { ThemeContext } from 'context/ThemeContext';
 import Home from 'containers/Home';
 import Checkout from 'containers/Checkout';
@@ -18,7 +16,12 @@ import Payment from 'containers/Payment';
 import Success from 'containers/Success';
 import { TopBar } from 'components/Header/Header';
 import { PageHooks } from 'pages/PageHooks';
+import { FormComponents } from 'pages/FormComponents';
 import { ConfLayout } from 'components/conf/ConfLayout';
+import AppContext from 'context/conf/AppContext';
+import { Forms } from 'pages/Forms';
+// import useInitialState from 'hooks/conf/useInitialState';
+
 import './App.css';
 
 const { SubMenu } = Menu;
@@ -30,6 +33,8 @@ function App() {
   const [title, setTitle] = useState('');
   const [path] = useLocation();
   const color = useContext(ThemeContext);
+
+  // const initialState = useInitialState();
 
   const getTitle = () => {
     switch (path) {
@@ -97,11 +102,11 @@ function App() {
             icon={<AppstoreAddOutlined />}
             title="Components"
           >
-            <Menu.Item key="/components/searchbox">
-              <Link to="/components/searchbox">Search Box</Link>
+            <Menu.Item key="/components/formcomponents">
+              <Link to="/components/formcomponents">Data Entry</Link>
             </Menu.Item>
-            <Menu.Item key="/components/inputemail">
-              <Link to="/components/inputemail">Email Input</Link>
+            <Menu.Item key="/components/forms">
+              <Link to="/components/forms">Formularios</Link>
             </Menu.Item>
           </SubMenu>
           <SubMenu
@@ -142,18 +147,23 @@ function App() {
                 </Carousel>
               </Route>
               <Route path="/hooks" component={PageHooks} />
-              <Route path="/components/searchbox" component={SearchBox} />
-              <Route path="/components/inputemail" component={InputEmail} />
-              <ConfLayout>
-                <Route path="/conf/home" component={Home} />
-                <Route path="/conf/checkout" component={Checkout} />
-                <Route
-                  path="/conf/checkout/information"
-                  component={Information}
-                />
-                <Route path="/conf/checkout/payment" component={Payment} />
-                <Route path="/conf/checkout/success" component={Success} />
-              </ConfLayout>
+              <Route
+                path="/components/formcomponents"
+                component={FormComponents}
+              />
+              <Route path="/components/forms" component={Forms} />
+              <AppContext.Provider>
+                <ConfLayout>
+                  <Route path="/conf/home" component={Home} />
+                  <Route path="/conf/checkout" component={Checkout} />
+                  <Route
+                    path="/conf/checkout/information"
+                    component={Information}
+                  />
+                  <Route path="/conf/checkout/payment" component={Payment} />
+                  <Route path="/conf/checkout/success" component={Success} />
+                </ConfLayout>
+              </AppContext.Provider>
             </Switch>
           </div>
         </Content>

@@ -43,7 +43,7 @@ export const InputEmail = () => {
             align-items: center;
           }
 
-          input {
+          .con-input input {
             padding: 11px 15px;
             border-radius: 25px;
             border: 0px;
@@ -95,13 +95,13 @@ export const InputEmail = () => {
             transform: scale(1);
           }
 
-          input:focus {
+          .con-input input:focus {
             transform: translate(0, -6px);
             box-shadow: 0px 15px 25px 0px rgba(0, 0, 0, 0.09);
             padding-left: 20px;
           }
 
-          input:focus ~ .icons {
+          .con-input input:focus ~ .icons {
             transform: translate(0, -6px);
           }
         `}
